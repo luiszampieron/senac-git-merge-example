@@ -19,6 +19,54 @@ function calcularTotal() {
   document.getElementById("valor-total").textContent = totalFormatado;
 }
 
+function efetivarCompra() {
+  const checkboxes = document.querySelectorAll(".item-produto");
+  const quantidades = document.querySelectorAll(".qtd-produto");
+  const itensSelecionados = [];
+
+  checkboxes.forEach(function (checkbox, index) {
+    if (checkbox.checked) {
+      itensSelecionados.push({
+        nome: checkbox.dataset.nome,
+        preco: parseFloat(checkbox.value),
+        quantidade: parseInt(quantidades[index].value) || 1,
+      });
+    }
+  });
+
+  if (itensSelecionados.length === 0) {
+    alert("Selecione ao menos um produto antes de efetivar a compra!");
+    return;
+  }
+
+  // Recupera o carrinho atual e adiciona os novos itens
+  const carrinhoAtual = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  itensSelecionados.forEach(function (novoItem) {
+    const existente = carrinhoAtual.find(function (item) {
+      return item.nome === novoItem.nome;
+    });
+    if (existente) {
+      existente.quantidade += novoItem.quantidade;
+    } else {
+      carrinhoAtual.push(novoItem);
+    }
+  });
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinhoAtual));
+  window.location.href = "carrinho.html";
+}
+
+function atualizarContadorCarrinho() {
+  const counter = document.getElementById("carrinho-count");
+  if (!counter) return;
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const total = carrinho.reduce(function (acc, item) {
+    return acc + item.quantidade;
+  }, 0);
+  counter.textContent = total;
+}
+
 const checkboxes = document.querySelectorAll(".item-produto");
 const quantidades = document.querySelectorAll(".qtd-produto");
 
@@ -29,3 +77,5 @@ checkboxes.forEach(function (checkbox) {
 quantidades.forEach(function (input) {
   input.addEventListener("change", calcularTotal);
 });
+
+atualizarContadorCarrinho();

@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
@@ -26,6 +26,9 @@
                         <a class="nav-link" href="contato.html">Contato</a>
                     </li>
                 </ul>
+                <a class="btn btn-outline-light btn-sm" href="carrinho.html">
+                    🛒 Carrinho <span id="carrinho-count" class="badge bg-warning text-dark ms-1">0</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -42,7 +45,7 @@
                         <p class="fw-bold mt-auto mb-2">R$ 99,90</p>
                         <div class="mb-2">
                             <div class="form-check">
-                                <input class="form-check-input item-produto" type="checkbox" value="99.90" id="check-produto1">
+                                <input class="form-check-input item-produto" type="checkbox" value="99.90" id="check-produto1" data-nome="Produto 1">
                                 <label class="form-check-label" for="check-produto1">Selecionar</label>
                             </div>
                             <label for="qtd-produto1" class="form-label mt-1 mb-0">Quantidade:</label>
@@ -61,7 +64,7 @@
                         <p class="fw-bold mt-auto mb-2">R$ 149,90</p>
                         <div class="mb-2">
                             <div class="form-check">
-                                <input class="form-check-input item-produto" type="checkbox" value="149.90" id="check-produto2">
+                                <input class="form-check-input item-produto" type="checkbox" value="149.90" id="check-produto2" data-nome="Produto 2">
                                 <label class="form-check-label" for="check-produto2">Selecionar</label>
                             </div>
                             <label for="qtd-produto2" class="form-label mt-1 mb-0">Quantidade:</label>
@@ -80,7 +83,7 @@
                         <p class="fw-bold mt-auto mb-2">R$ 199,90</p>
                         <div class="mb-2">
                             <div class="form-check">
-                                <input class="form-check-input item-produto" type="checkbox" value="199.90" id="check-produto3">
+                                <input class="form-check-input item-produto" type="checkbox" value="199.90" id="check-produto3" data-nome="Produto 3">
                                 <label class="form-check-label" for="check-produto3">Selecionar</label>
                             </div>
                             <label for="qtd-produto3" class="form-label mt-1 mb-0">Quantidade:</label>
@@ -96,6 +99,11 @@
     <div class="container my-4">
         <div class="alert alert-info text-center">
             <h4 class="mb-0">Valor Total: R$ <span id="valor-total">0,00</span></h4>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-success btn-lg px-5" onclick="efetivarCompra()">
+                🛒 Efetivar Compra
+            </button>
         </div>
     </div>
 
