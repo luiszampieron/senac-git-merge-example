@@ -1,6 +1,7 @@
-import { buscarDepoimentos, enviarContato } from "./api.js";
+import { buscarDepoimentos, enviarContato, buscarProdutos } from "./api.js";
 import {
   renderizarDepoimentos,
+  renderizarProdutos,
   mostrarAlerta,
   atualizarContadorCarrinho,
 } from "./ui.js";
@@ -30,7 +31,7 @@ if (formContato) {
         mostrarAlerta(
           "success",
           "<strong>Mensagem enviada!</strong> Obrigado pelo contato, retornaremos em breve.",
-          formContato
+          formContato,
         );
         formContato.reset();
       } else {
@@ -40,40 +41,76 @@ if (formContato) {
       mostrarAlerta(
         "danger",
         "<strong>Erro ao enviar.</strong> Tente novamente mais tarde.",
-        formContato
+        formContato,
       );
     }
   });
 }
 
-// Exposto globalmente para os onclick inline em produtos.html
-function adicionarAoCarrinho(nome, preco, qtdInputId) {
-  const quantidade = parseInt(document.getElementById(qtdInputId).value) || 1;
-
+// Lógica central do carrinho (sem manipulação de botão)
+function addToCart(nome, preco, qtdInputId) {
+  const quantidade = parseInt(document.getElementById(qtdInputId)?.value) || 1;
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
   const existente = carrinho.find(function (item) {
     return item.nome === nome;
   });
-
   if (existente) {
     existente.quantidade += quantidade;
   } else {
     carrinho.push({ nome: nome, preco: preco, quantidade: quantidade });
   }
-
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
   atualizarContadorCarrinho();
+}
 
-  const btn = document.querySelector(`button[onclick*="${qtdInputId}"]`);
-  if (btn) {
-    const textoOriginal = btn.innerHTML;
-    btn.innerHTML = "✅ Adicionado!";
-    btn.disabled = true;
-    setTimeout(function () {
-      btn.innerHTML = textoOriginal;
-      btn.disabled = false;
-    }, 1500);
-  }
+function feedbackBotao(btn) {
+  const textoOriginal = btn.innerHTML;
+  btn.innerHTML = "✅ Adicionado!";
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.innerHTML = textoOriginal;
+    btn.disabled = false;
+  }, 1500);
+}
+
+// Carregamento dinâmico de produtos
+const listaProdutos = document.getElementById("lista-produtos");
+if (listaProdutos) {
+  listaProdutos.innerHTML = `
+    <div class="col-12 text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+      <p class="mt-3 text-muted">Carregando produtos...</p>
+    </div>
+  `;
+
+  buscarProdutos()
+    .then(renderizarProdutos)
+    .catch(function () {
+      listaProdutos.innerHTML =
+        '<div class="col-12"><div class="alert alert-danger">Não foi possível carregar os produtos. Tente novamente.</div></div>';
+    });
+
+  listaProdutos.addEventListener("click", function (e) {
+    const btn = e.target.closest(".btn-adicionar");
+    if (!btn) return;
+    addToCart(
+      btn.dataset.nome,
+      parseFloat(btn.dataset.preco),
+      btn.dataset.qtdId,
+    );
+    feedbackBotao(btn);
+  });
+}
+
+// Mantido para compatibilidade com páginas estáticas
+function adicionarAoCarrinho(nome, preco, qtdInputId) {
+  addToCart(nome, preco, qtdInputId);
+  const btn = document.querySelector(
+    `.btn-adicionar[data-qtd-id="${qtdInputId}"]`,
+  );
+  if (btn) feedbackBotao(btn);
 }
 
 window.adicionarAoCarrinho = adicionarAoCarrinho;
@@ -83,8 +120,11 @@ const modalProduto = document.getElementById("modalProduto");
 if (modalProduto) {
   modalProduto.addEventListener("show.bs.modal", function (event) {
     const botao = event.relatedTarget;
-    document.getElementById("modalProdutoTitulo").textContent = botao.dataset.nome;
-    document.getElementById("modalProdutoDescricao").textContent = botao.dataset.descricao;
-    document.getElementById("modalProdutoPreco").textContent = "R$ " + botao.dataset.preco;
+    document.getElementById("modalProdutoTitulo").textContent =
+      botao.dataset.nome;
+    document.getElementById("modalProdutoDescricao").textContent =
+      botao.dataset.descricao;
+    document.getElementById("modalProdutoPreco").textContent =
+      "R$ " + botao.dataset.preco;
   });
 }

@@ -1,3 +1,9 @@
+export async function buscarProdutos() {
+  const resposta = await fetch("https://fakestoreapi.com/products?limit=6");
+  if (!resposta.ok) throw new Error("Erro ao buscar produtos");
+  return resposta.json();
+}
+
 export async function buscarDepoimentos() {
   const resposta = await fetch(
     "https://jsonplaceholder.typicode.com/comments?_limit=3"
