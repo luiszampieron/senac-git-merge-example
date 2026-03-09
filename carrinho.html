@@ -72,6 +72,25 @@
         </div>
     </div>
 
+    <!-- Modal de confirmação de remoção -->
+    <div class="modal fade" id="modalRemover" tabindex="-1" aria-labelledby="modalRemoverLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalRemoverLabel">🗑️ Remover item</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="fs-5">Deseja remover <strong id="modalRemoverNome"></strong> do carrinho?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="modalRemoverConfirmar">Remover</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal de pedido finalizado -->
     <div class="modal fade" id="modalFinalizado" tabindex="-1" aria-labelledby="modalFinalizadoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -94,7 +113,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function renderizarCarrinho() {
-            const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            // Agrupa itens com o mesmo nome antes de renderizar
+            const raw = JSON.parse(localStorage.getItem("carrinho")) || [];
+            const mapa = {};
+            raw.forEach(function (item) {
+                if (mapa[item.nome]) {
+                    mapa[item.nome].quantidade += item.quantidade;
+                } else {
+                    mapa[item.nome] = { nome: item.nome, preco: item.preco, quantidade: item.quantidade };
+                }
+            });
+            const carrinho = Object.values(mapa);
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
             const tbody = document.getElementById("carrinho-itens");
             const totalEl = document.getElementById("total-carrinho");
             const counter = document.getElementById("carrinho-count");
@@ -152,12 +183,25 @@
             renderizarCarrinho();
         }
 
+        let _indexParaRemover = null;
+
         function removerItem(index) {
             const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-            carrinho.splice(index, 1);
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
-            renderizarCarrinho();
+            _indexParaRemover = index;
+            document.getElementById("modalRemoverNome").textContent = carrinho[index].nome;
+            const modal = new bootstrap.Modal(document.getElementById("modalRemover"));
+            modal.show();
         }
+
+        document.getElementById("modalRemoverConfirmar").addEventListener("click", function () {
+            if (_indexParaRemover === null) return;
+            const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            carrinho.splice(_indexParaRemover, 1);
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+            _indexParaRemover = null;
+            bootstrap.Modal.getInstance(document.getElementById("modalRemover")).hide();
+            renderizarCarrinho();
+        });
 
         function limparCarrinho() {
             if (confirm("Tem certeza que deseja limpar o carrinho?")) {
