@@ -65,3 +65,50 @@ async function carregarDepoimentos() {
 }
 
 carregarDepoimentos();
+
+const formContato = document.getElementById("form-contato");
+if (formContato) {
+  formContato.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const dados = {
+      nome: document.getElementById("nome").value,
+      email: document.getElementById("email").value,
+      mensagem: document.getElementById("mensagem").value,
+    };
+
+    try {
+      const resposta = await fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados),
+      });
+
+      const alerta = document.createElement("div");
+      alerta.className = "alert mt-4 alert-dismissible fade show";
+      alerta.setAttribute("role", "alert");
+
+      if (resposta.status === 201) {
+        alerta.classList.add("alert-success");
+        alerta.innerHTML = `
+          <strong>Mensagem enviada!</strong> Obrigado pelo contato, retornaremos em breve.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        `;
+        formContato.reset();
+      } else {
+        throw new Error("Status inesperado: " + resposta.status);
+      }
+
+      formContato.insertAdjacentElement("afterend", alerta);
+    } catch (erro) {
+      const alerta = document.createElement("div");
+      alerta.className = "alert alert-danger mt-4 alert-dismissible fade show";
+      alerta.setAttribute("role", "alert");
+      alerta.innerHTML = `
+        <strong>Erro ao enviar.</strong> Tente novamente mais tarde.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+      `;
+      formContato.insertAdjacentElement("afterend", alerta);
+    }
+  });
+}
