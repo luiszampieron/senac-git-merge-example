@@ -79,3 +79,29 @@ quantidades.forEach(function (input) {
 });
 
 atualizarContadorCarrinho();
+
+async function carregarDepoimentos() {
+  const resposta = await fetch(
+    "https://jsonplaceholder.typicode.com/comments?_limit=3",
+  );
+  const depoimentos = await resposta.json();
+
+  const lista = document.getElementById("lista-depoimentos");
+  if (!lista) return;
+
+  depoimentos.forEach(function (depoimento) {
+    lista.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">${depoimento.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${depoimento.email}</h6>
+            <p class="card-text">${depoimento.body}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+carregarDepoimentos();
