@@ -77,3 +77,14 @@ function adicionarAoCarrinho(nome, preco, qtdInputId) {
 }
 
 window.adicionarAoCarrinho = adicionarAoCarrinho;
+
+// Modal dinâmico de detalhes do produto
+const modalProduto = document.getElementById("modalProduto");
+if (modalProduto) {
+  modalProduto.addEventListener("show.bs.modal", function (event) {
+    const botao = event.relatedTarget;
+    document.getElementById("modalProdutoTitulo").textContent = botao.dataset.nome;
+    document.getElementById("modalProdutoDescricao").textContent = botao.dataset.descricao;
+    document.getElementById("modalProdutoPreco").textContent = "R$ " + botao.dataset.preco;
+  });
+}
