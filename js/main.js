@@ -37,7 +37,7 @@ if (formContato) {
       } else {
         throw new Error("Status inesperado: " + resposta.status);
       }
-    } catch (erro) {
+    } catch (_erro) {
       mostrarAlerta(
         "danger",
         "<strong>Erro ao enviar.</strong> Tente novamente mais tarde.",

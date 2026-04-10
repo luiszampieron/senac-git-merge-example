@@ -6,7 +6,11 @@ function renderizarCarrinho() {
     if (mapa[item.nome]) {
       mapa[item.nome].quantidade += item.quantidade;
     } else {
-      mapa[item.nome] = { nome: item.nome, preco: item.preco, quantidade: item.quantidade };
+      mapa[item.nome] = {
+        nome: item.nome,
+        preco: item.preco,
+        quantidade: item.quantidade,
+      };
     }
   });
   const carrinho = Object.values(mapa);
@@ -55,7 +59,9 @@ function renderizarCarrinho() {
     tbody.appendChild(tr);
   });
 
-  totalEl.textContent = total.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+  totalEl.textContent = total.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+  });
   counter.textContent = totalItens;
 }
 
@@ -74,20 +80,23 @@ let _indexParaRemover = null;
 function removerItem(index) {
   const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
   _indexParaRemover = index;
-  document.getElementById("modalRemoverNome").textContent = carrinho[index].nome;
+  document.getElementById("modalRemoverNome").textContent =
+    carrinho[index].nome;
   const modal = new bootstrap.Modal(document.getElementById("modalRemover"));
   modal.show();
 }
 
-document.getElementById("modalRemoverConfirmar").addEventListener("click", function () {
-  if (_indexParaRemover === null) return;
-  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-  carrinho.splice(_indexParaRemover, 1);
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  _indexParaRemover = null;
-  bootstrap.Modal.getInstance(document.getElementById("modalRemover")).hide();
-  renderizarCarrinho();
-});
+document
+  .getElementById("modalRemoverConfirmar")
+  .addEventListener("click", function () {
+    if (_indexParaRemover === null) return;
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    carrinho.splice(_indexParaRemover, 1);
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    _indexParaRemover = null;
+    bootstrap.Modal.getInstance(document.getElementById("modalRemover")).hide();
+    renderizarCarrinho();
+  });
 
 function limparCarrinho() {
   if (confirm("Tem certeza que deseja limpar o carrinho?")) {

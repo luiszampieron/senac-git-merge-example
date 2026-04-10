@@ -1,183 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Labubu Store</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-        }
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            line-height: 1.2;
-        }
-        .hero .badge-pill {
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(8px);
-        }
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        .testimonial-card {
-            border: none;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-        }
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-        .cta-section {
-            background: linear-gradient(135deg, #0f3460, #533483);
-        }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+      .hero .badge-pill {
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+      }
+      .feature-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+      .testimonial-card {
+        border: none;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      }
+      .section-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .cta-section {
+        background: linear-gradient(135deg, #0f3460, #533483);
+      }
     </style>
-</head>
-<body class="bg-light">
-
+  </head>
+  <body class="bg-light">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">🛍️ Labubu Store</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.html">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato.html">Contato</a>
-                    </li>
-                </ul>
-                <a class="btn btn-outline-light btn-sm" href="carrinho.html">
-                    🛒 Carrinho <span id="carrinho-count" class="badge bg-warning text-dark ms-1">0</span>
-                </a>
-            </div>
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">🛍️ Labubu Store</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="produtos.html">Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contato.html">Contato</a>
+            </li>
+          </ul>
+          <a class="btn btn-outline-light btn-sm" href="carrinho.html">
+            🛒 Carrinho
+            <span id="carrinho-count" class="badge bg-warning text-dark ms-1"
+              >0</span
+            >
+          </a>
         </div>
+      </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero text-white">
-        <div class="container py-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <span class="badge badge-pill rounded-pill px-3 py-2 mb-4 text-white small">
-                        ✨ Bem-vindo à nossa loja
-                    </span>
-                    <h1 class="text-white mb-4">
-                        Produtos incríveis com o<br>
-                        <span class="text-warning">melhor custo-benefício</span>
-                    </h1>
-                    <p class="lead text-white-50 mb-5">
-                        Encontre tudo o que você precisa com qualidade garantida, entrega rápida e preços que cabem no bolso.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="produtos.html" class="btn btn-warning btn-lg fw-semibold px-4">
-                            Ver Produtos →
-                        </a>
-                        <a href="contato.html" class="btn btn-outline-light btn-lg px-4">
-                            Fale Conosco
-                        </a>
-                    </div>
-                    <div class="d-flex gap-4 mt-5 text-white-50 small">
-                        <div><span class="text-white fw-bold fs-5">500+</span><br>Produtos</div>
-                        <div class="border-start border-secondary ps-4"><span class="text-white fw-bold fs-5">10k+</span><br>Clientes</div>
-                        <div class="border-start border-secondary ps-4"><span class="text-white fw-bold fs-5">4.9⭐</span><br>Avaliação</div>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-flex justify-content-center">
-                    <img src="https://illustrations.popsy.co/amber/online-shopping.svg"
-                        alt="Compras online" style="max-width: 440px; width: 100%;">
-                </div>
+      <div class="container py-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span
+              class="badge badge-pill rounded-pill px-3 py-2 mb-4 text-white small"
+            >
+              ✨ Bem-vindo à nossa loja
+            </span>
+            <h1 class="text-white mb-4">
+              Produtos incríveis com o<br />
+              <span class="text-warning">melhor custo-benefício</span>
+            </h1>
+            <p class="lead text-white-50 mb-5">
+              Encontre tudo o que você precisa com qualidade garantida, entrega
+              rápida e preços que cabem no bolso.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a
+                href="produtos.html"
+                class="btn btn-warning btn-lg fw-semibold px-4"
+              >
+                Ver Produtos →
+              </a>
+              <a href="contato.html" class="btn btn-outline-light btn-lg px-4">
+                Fale Conosco
+              </a>
             </div>
+            <div class="d-flex gap-4 mt-5 text-white-50 small">
+              <div>
+                <span class="text-white fw-bold fs-5">500+</span><br />Produtos
+              </div>
+              <div class="border-start border-secondary ps-4">
+                <span class="text-white fw-bold fs-5">10k+</span><br />Clientes
+              </div>
+              <div class="border-start border-secondary ps-4">
+                <span class="text-white fw-bold fs-5">4.9⭐</span
+                ><br />Avaliação
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+            <img
+              src="https://illustrations.popsy.co/amber/online-shopping.svg"
+              alt="Compras online"
+              style="max-width: 440px; width: 100%"
+            />
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Features -->
     <section class="py-5 bg-white">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-label text-primary">Por que nos escolher</span>
-                <h2 class="fw-bold mt-2">Vantagens exclusivas</h2>
-            </div>
-            <div class="row g-4 text-center">
-                <div class="col-md-4">
-                    <div class="feature-icon bg-warning bg-opacity-10 mx-auto mb-3">🚚</div>
-                    <h5 class="fw-semibold">Entrega Rápida</h5>
-                    <p class="text-muted small">Receba em casa em até 2 dias úteis para todo o Brasil.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon bg-success bg-opacity-10 mx-auto mb-3">🔒</div>
-                    <h5 class="fw-semibold">Compra Segura</h5>
-                    <p class="text-muted small">Pagamento protegido e dados criptografados em todas as transações.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon bg-info bg-opacity-10 mx-auto mb-3">↩️</div>
-                    <h5 class="fw-semibold">Troca Garantida</h5>
-                    <p class="text-muted small">Não gostou? Troque ou devolva em até 30 dias sem complicação.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label text-primary">Por que nos escolher</span>
+          <h2 class="fw-bold mt-2">Vantagens exclusivas</h2>
         </div>
+        <div class="row g-4 text-center">
+          <div class="col-md-4">
+            <div class="feature-icon bg-warning bg-opacity-10 mx-auto mb-3">
+              🚚
+            </div>
+            <h5 class="fw-semibold">Entrega Rápida</h5>
+            <p class="text-muted small">
+              Receba em casa em até 2 dias úteis para todo o Brasil.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon bg-success bg-opacity-10 mx-auto mb-3">
+              🔒
+            </div>
+            <h5 class="fw-semibold">Compra Segura</h5>
+            <p class="text-muted small">
+              Pagamento protegido e dados criptografados em todas as transações.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon bg-info bg-opacity-10 mx-auto mb-3">
+              ↩️
+            </div>
+            <h5 class="fw-semibold">Troca Garantida</h5>
+            <p class="text-muted small">
+              Não gostou? Troque ou devolva em até 30 dias sem complicação.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Depoimentos -->
     <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-label text-primary">Depoimentos</span>
-                <h2 class="fw-bold mt-2">O que nossos clientes dizem</h2>
-            </div>
-            <div class="row" id="lista-depoimentos"></div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="section-label text-primary">Depoimentos</span>
+          <h2 class="fw-bold mt-2">O que nossos clientes dizem</h2>
         </div>
+        <div class="row" id="lista-depoimentos"></div>
+      </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-section text-white py-5">
-        <div class="container text-center py-3">
-            <h2 class="fw-bold mb-3">Pronto para começar?</h2>
-            <p class="text-white-50 mb-4">Explore nosso catálogo e encontre o produto perfeito para você.</p>
-            <a href="produtos.html" class="btn btn-warning btn-lg fw-semibold px-5">
-                Ver todos os produtos →
-            </a>
-        </div>
+      <div class="container text-center py-3">
+        <h2 class="fw-bold mb-3">Pronto para começar?</h2>
+        <p class="text-white-50 mb-4">
+          Explore nosso catálogo e encontre o produto perfeito para você.
+        </p>
+        <a href="produtos.html" class="btn btn-warning btn-lg fw-semibold px-5">
+          Ver todos os produtos →
+        </a>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-dark text-white-50 py-4">
-        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
-            <span class="fw-bold text-white">🛍️ Labubu Store</span>
-            <span class="small">© 2026 Labubu Store. Todos os direitos reservados.</span>
-            <a href="mailto:contato@meusite.com" class="text-white-50 small text-decoration-none">
-                ✉️ contato@meusite.com
-            </a>
-        </div>
+      <div
+        class="container d-flex flex-wrap justify-content-between align-items-center gap-3"
+      >
+        <span class="fw-bold text-white">🛍️ Labubu Store</span>
+        <span class="small"
+          >© 2026 Labubu Store. Todos os direitos reservados.</span
+        >
+        <a
+          href="mailto:contato@meusite.com"
+          class="text-white-50 small text-decoration-none"
+        >
+          ✉️ contato@meusite.com
+        </a>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
-</body>
+  </body>
 </html>

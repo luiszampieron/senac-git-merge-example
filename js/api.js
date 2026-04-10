@@ -6,7 +6,7 @@ export async function buscarProdutos() {
 
 export async function buscarDepoimentos() {
   const resposta = await fetch(
-    "https://jsonplaceholder.typicode.com/comments?_limit=3"
+    "https://jsonplaceholder.typicode.com/comments?_limit=3",
   );
   return resposta.json();
 }
