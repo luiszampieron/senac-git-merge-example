@@ -1,3 +1,4 @@
+import "./theme.js";
 import { buscarDepoimentos, enviarContato, buscarProdutos } from "./api.js";
 import {
   renderizarDepoimentos,

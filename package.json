@@ -31,6 +31,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
+    "sass": "^1.99.0",
     "vite": "^8.0.8"
   },
   "lint-staged": {
@@ -38,7 +39,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "**/*.{html,json,md}": [
+    "**/*.{html,json,md,scss}": [
       "prettier --write"
     ]
   }

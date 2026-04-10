@@ -1,0 +1,299 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital@0;1&display=swap");
+
+:root {
+  --font-style-base: normal;
+  --font-style-accent: italic;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 700;
+  --font-weight-bold: 800;
+  --font-color-base: #1f2937;
+  --font-color-muted: #5b6472;
+
+  --surface-page: #eef2f8;
+  --surface-card: #ffffff;
+  --surface-soft: #f8f9fc;
+
+  --brand-main: #2f5cf3;
+  --brand-contrast: #ffffff;
+  --hero-a: #1a1a2e;
+  --hero-b: #16213e;
+  --hero-c: #0f3460;
+  --cta-a: #0f3460;
+  --cta-b: #533483;
+  --ring-soft: rgba(47, 92, 243, 0.22);
+}
+
+body.theme-default {
+  --font-color-base: #1f2937;
+  --font-color-muted: #5b6472;
+  --surface-page: #eef2f8;
+  --surface-card: #ffffff;
+  --surface-soft: #f8f9fc;
+  --brand-main: #2f5cf3;
+  --brand-contrast: #ffffff;
+  --hero-a: #1a1a2e;
+  --hero-b: #16213e;
+  --hero-c: #0f3460;
+  --cta-a: #0f3460;
+  --cta-b: #533483;
+  --ring-soft: rgba(47, 92, 243, 0.22);
+}
+
+body.theme-ocean {
+  --font-color-base: #0f2f3c;
+  --font-color-muted: #3f5e67;
+  --surface-page: #e7f6f8;
+  --surface-card: #ffffff;
+  --surface-soft: #f2fbfc;
+  --brand-main: #0f8fa8;
+  --brand-contrast: #f2fdff;
+  --hero-a: #0d2d35;
+  --hero-b: #14505f;
+  --hero-c: #0a788b;
+  --cta-a: #0c4a59;
+  --cta-b: #0f8fa8;
+  --ring-soft: rgba(15, 143, 168, 0.24);
+}
+
+body.theme-sunset {
+  --font-color-base: #3c1f2e;
+  --font-color-muted: #745365;
+  --surface-page: #fff2eb;
+  --surface-card: #fffaf6;
+  --surface-soft: #fff6f0;
+  --brand-main: #ff6f4a;
+  --brand-contrast: #fff7f2;
+  --hero-a: #3f1b2d;
+  --hero-b: #7d2f4f;
+  --hero-c: #d35447;
+  --cta-a: #97264d;
+  --cta-b: #ff6f4a;
+  --ring-soft: rgba(255, 111, 74, 0.26);
+}
+
+body {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-style: var(--font-style-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--font-color-base);
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(255, 255, 255, 0.8),
+      transparent 45%
+    ),
+    linear-gradient(180deg, var(--surface-page) 0%, #ffffff 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-weight: var(--font-weight-bold);
+}
+
+p,
+label,
+li,
+input,
+textarea,
+small,
+a {
+  color: var(--font-color-base);
+}
+
+.text-muted,
+.text-white-50 {
+  color: var(--font-color-muted) !important;
+}
+
+.bg-light,
+.bg-white {
+  background-color: var(--surface-soft) !important;
+}
+
+.card,
+.modal-content {
+  background-color: var(--surface-card);
+  border: 1px solid rgba(23, 32, 54, 0.08);
+  box-shadow: 0 12px 30px rgba(20, 22, 38, 0.06);
+}
+
+.navbar.bg-dark,
+footer.bg-dark {
+  background-color: color-mix(in srgb, var(--hero-a) 80%, #000 20%) !important;
+}
+
+.navbar .nav-link {
+  color: color-mix(in srgb, var(--brand-contrast) 85%, transparent) !important;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #ffffff !important;
+}
+
+.theme-switcher {
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--brand-contrast) 30%, transparent);
+}
+
+.theme-toggle {
+  border: none !important;
+  color: color-mix(in srgb, var(--brand-contrast) 92%, transparent);
+  background: color-mix(in srgb, var(--hero-c) 45%, transparent);
+  font-weight: var(--font-weight-medium);
+}
+
+.theme-toggle.active,
+.theme-toggle:hover {
+  background: color-mix(in srgb, var(--brand-main) 60%, #ffffff 5%) !important;
+  color: #ffffff !important;
+}
+
+.hero,
+.page-hero {
+  background: linear-gradient(
+    135deg,
+    var(--hero-a) 0%,
+    var(--hero-b) 48%,
+    var(--hero-c) 100%
+  );
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+}
+
+.hero h1 span,
+.section-label {
+  font-family: "Playfair Display", serif;
+  font-style: var(--font-style-accent);
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.testimonial-card {
+  border: none;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.cta-section {
+  background: linear-gradient(135deg, var(--cta-a), var(--cta-b));
+}
+
+.contact-card {
+  border: none;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+}
+
+.info-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.cart-table thead th {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn-primary,
+.btn-success {
+  background-color: var(--brand-main);
+  border-color: var(--brand-main);
+}
+
+.btn-outline-primary,
+.btn-outline-light {
+  border-color: color-mix(in srgb, var(--brand-main) 70%, #ffffff 25%);
+}
+
+.form-control:focus,
+.btn:focus-visible {
+  border-color: var(--brand-main);
+  box-shadow: 0 0 0 0.25rem var(--ring-soft);
+}
+
+@media (max-width: 991px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero .container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .nav-action-group {
+    margin-top: 1rem;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .theme-switcher {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nav-action-group .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero h1 {
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+  }
+
+  .cart-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .cart-table {
+    min-width: 640px;
+  }
+
+  .container.py-5,
+  .container.py-2 {
+    padding-top: 1.8rem !important;
+    padding-bottom: 1.8rem !important;
+  }
+}

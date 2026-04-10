@@ -1,3 +1,5 @@
+import "./theme.js";
+
 function renderizarCarrinho() {
   // Agrupa itens com o mesmo nome antes de renderizar
   const raw = JSON.parse(localStorage.getItem("carrinho")) || [];
